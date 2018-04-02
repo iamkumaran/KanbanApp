@@ -1,4 +1,4 @@
-import { find, filter } from 'lodash';
+// import { find, filter } from 'lodash';
 import Task from './connector';
 import Board from '../board/connector'
 
@@ -33,13 +33,28 @@ const resolvers = {
   },
   Mutation : {
     createTask(_, {doc}){
-      let task = new Task(doc);
-      task.save();
+      // console.log('selector', doc)
 
-      return task;
+      return Task.find({boardId: doc.boardId}).exec().then( (res) => {
+        // console.log('doc', res)
+        doc.order = res.length + 1;
+        let task = new Task(doc);
+        task.save();
+        return task;
+      })
+
+      //doc.order = results.length + 1
+      //var results = query.lean(true).exec();
+      //console.log('doc', query);
+
+
     },
     updateTask(_, {query, doc}){
       const task = Task.update(query.selector, {$set: doc});
+      return task;
+    },
+    removeTask(_, {query, doc}){
+      const task = Task.findByIdAndRemove(query.selector);
       return task;
     }
   },

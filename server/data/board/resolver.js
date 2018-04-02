@@ -40,6 +40,11 @@ const resolvers = {
     updateBoard(_, {query, doc}){
       const board = Board.update(query.selector, {$set: doc});
       return board;
+    },
+    removeBoard(_, {query}){
+      Task.remove({boardId: query.selector._id}).exec();
+      const board = Board.findByIdAndRemove(query.selector);
+      return board;
     }
   }
 }

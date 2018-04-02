@@ -25,11 +25,15 @@ const Mutation = `
     createTask(doc: TaskDocInput!): Task
     # Task update
     updateTask(query: QueryInput!, doc: TaskDocInput!): Task
+    # Task Remove
+    removeTask(query: QueryInput!): Task
 
     # Board create
     createBoard(doc: BoardDocInput!): Board
     # Board update
     updateBoard(query: QueryInput!, doc: BoardDocInput!): Board
+    # Board Remove
+    removeBoard(query: QueryInput!): Board
   }
 `;
 

@@ -1,20 +1,49 @@
 <template>
   <div id="app">
-    <Board v-bind:board="board" :key="board._id" v-for="board in boards"/>
+    <button class="add-board-btn" @click="showModal = true">Add Board</button>
+    <h2>Kanban App</h2>
+    <Board :board="board" :boardIndex="index" :key="board._id" v-for="(board, index) in boards"/>
+    <VueModal v-if="showModal" @close="closeModal">
+      <h3 slot="header">Add Task</h3>
+      <form slot="body">
+        <input type="text" value="" v-model="addBoardInput"/>
+        <button @click="addBoard">Add</button>
+        <button @click="closeModal"><i class="material-icons">cancel</i></button>
+      </form>
+    </VueModal>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Board from '@/components/Board'
+import VueModal from '@/components/VueModal'
 
 export default {
   name: 'App',
   components: {
-    Board
+    Board,
+    VueModal
+  },
+  data () {
+    return {
+      showModal: false,
+      addBoardInput: ''
+    }
   },
   computed: {
     ...mapState(['boards'])
+  },
+  methods: {
+    addBoard () {
+      if (!this.addBoardInput) return false
+      this.$store.dispatch('addBoard', {boardName: this.addBoardInput})
+      this.closeModal()
+    },
+    closeModal () {
+      this.addBoardInput = ''
+      this.showModal = false
+    }
   },
   beforeCreate () {
     this.$store.dispatch('fetchBoardList')
@@ -61,6 +90,14 @@ export default {
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+}
+.material-icons:hover {
+  color: #000;
+}
+.material-icons a{
+  text-decoration: none;
+  color: inherit;
 }
 Body {
   font-family: Sans-serif;
@@ -75,20 +112,10 @@ h1 {
   top: 16px;
 }
 
-menu {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-}
-
-menu.kanban .viewlist,
-menu.list .viewkanban {
-  display: inline;
-}
-
-menu.kanban .viewkanban,
-menu.list .viewlist {
-  display: none;
+.add-board-btn {
+  float:right;
+  margin-right: 75px;
+  padding: 10px 50px;
 }
 
 .dd {
@@ -100,52 +127,9 @@ menu.list .viewlist {
 }
 
 ol {
+  padding: 0;
   transition: border-color 2s ease, all 0.1s ease;
-}
-
-ol.list {
-  padding-top: 2em;
-  padding-left: 15px;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-ol.list .text {
-  float: right;
-  width: 60%;
-}
-
-ol.list h3,
-ol.list .actions,
-ol.list label {
-  float: left;
-  width: 30%;
-}
-
-ol.list > li,
-ol.list > h3 {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-ol.list > h2 {
-  padding-bottom: 6px;
-}
-
-ol.list.To-do {
-  border-left: 2px solid #FFB300;
-}
-
-ol.list.Gone {
-  border-left: 2px solid #FF3D00;
-}
-
-ol.list.progress {
-  border-left: 2px solid #29B6F6;
-}
-
-ol.list.Done {
-  border-left: 2px solid #8BC34A;
+  min-height: 100px;
 }
 
 H2,
@@ -189,13 +173,23 @@ button:hover {
   box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .14), 0 3px 1px -6px rgba(0, 0, 0, .2), 2px 5px 3px 0 rgba(0, 0, 0, .12);
 }
 
-button.addbutt {
+.rm-board{
+  color: #B0BEC5;
+  float:right;
+  line-height: 1.4;
+}
+.kanban__title{
+  margin-top: 0px;
+  margin-right: 25px;
+}
+.button.addbutt {
   background-color: #EEEEEE;
   color: #607D8B;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.list > button.addbutt {
+.list > .button.addbutt {
   max-width: 330px;
 }
 
@@ -222,23 +216,11 @@ button {
   text-decoration: none;
     }
 
-ol.kanban.To-do {
+.kanban.To-do {
   border-top: 5px solid #FFB300;
 }
 
-ol.kanban.Gone {
-  border-top: 5px solid #FF3D00;
-}
-
-ol.kanban.progress {
-  border-top: 5px solid #29B6F6;
-}
-
-ol.kanban.Done {
-  border-top: 5px solid #8BC34A;
-}
-
-ol.kanban {
+.kanban {
   border-top: 5px solid #78909C;
   width: 20%;
   height: auto;
@@ -396,7 +378,6 @@ ol.kanban {
 .dd-placeholder,
 .dd-empty {
   margin: 5px 0;
-  padding: 0;
   min-height: 30px;
   background: #E0E0E0;
   border: 1px dashed #b6bcbf;

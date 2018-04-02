@@ -5,6 +5,8 @@ const Task = `
     _id: String
     title: String
     board: Board
+    boardId: String
+    order: Int
   }
 
   # Define doc here
