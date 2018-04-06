@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamkumaran/kanban-app.git"
+    "url": "git+https://github.com/iamkumaran/KanbanApp.git"
   },
   "keywords": [
     "Node.js",
@@ -24,37 +24,38 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iamkumaran/kanban-app/issues"
+    "url": "https://github.com/iamkumaran/KanbanApp/issues"
   },
-  "homepage": "https://github.com/iamkumaran/kanban-app#readme",
+  "homepage": "https://github.com/iamkumaran/KanbanApp#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cors": "^2.8.0",
-    "express": "4.14.0",
-    "graphql": "^0.8.1",
-    "graphql-server-express": "^0.4.2",
-    "graphql-subscriptions": "^0.2.0",
-    "graphql-tools": "^0.8.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "graphql": "^0.8.2",
+    "graphql-server-express": "^0.4.4",
+    "graphql-subscriptions": "^0.2.3",
+    "graphql-tools": "^0.8.4",
     "graphql-type-json": "^0.1.4",
-    "lodash": "^4.15.0",
-    "mongoose": "^4.7.4",
+    "lodash": "^4.17.5",
+    "mongoose": "^4.13.12",
     "mongoose-hook-custom-id": "^0.1.4",
     "subscriptions-transport-ws": "^0.3.1"
   },
   "devDependencies": {
-    "babel-cli": "6.16.0",
-    "babel-core": "^6.17.0",
-    "babel-eslint": "^7.0.0",
-    "babel-plugin-inline-import": "^2.0.1",
-    "babel-polyfill": "6.16.0",
-    "babel-preset-es2015": "6.16.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "6.16.0",
-    "eslint": "^3.8.1",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-inline-import": "^2.0.6",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-react": "^6.4.1",
-    "nodemon": "^1.9.1"
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.10.3",
+    "nodemon": "^1.17.3"
   },
   "eslintConfig": {
     "parser": "babel-eslint",

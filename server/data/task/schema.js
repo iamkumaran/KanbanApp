@@ -14,6 +14,7 @@ const Task = `
     _id: String
     title: String
     boardId: String
+    order: Int
   }
 
 `;

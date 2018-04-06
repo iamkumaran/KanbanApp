@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <button class="add-board-btn" @click="showModal = true">Add Board</button>
+    <button class="add-board-btn" @click="openModal">Add Board</button>
     <h2>Kanban App</h2>
     <Board :board="board" :boardIndex="index" :key="board._id" v-for="(board, index) in boards"/>
-    <VueModal v-if="showModal" @close="closeModal">
-      <h3 slot="header">Add Task</h3>
+    <VueModal class="addBoardModal" v-if="showModal" @close="closeModal">
+      <h2 slot="header">Add Task</h2>
       <form slot="body">
-        <input type="text" value="" v-model="addBoardInput"/>
-        <button @click="addBoard">Add</button>
-        <button @click="closeModal"><i class="material-icons">cancel</i></button>
+        <p><input type="text" value="" v-model="addBoardInput" ref="input" placeholder="Add New Board"/></p>
+        <p>
+          <button title="Add New Board" @click="addBoard">Add</button>
+          <i class="material-icons" title="Cancel" @click="closeModal">cancel</i>
+        </p>
       </form>
     </VueModal>
   </div>
@@ -35,8 +37,17 @@ export default {
     ...mapState(['boards'])
   },
   methods: {
+    openModal () {
+      this.showModal = true
+      setTimeout(function () {
+        this.$refs['input'].focus()
+      }.bind(this), 100)
+    },
     addBoard () {
-      if (!this.addBoardInput) return false
+      if (!this.addBoardInput) {
+        this.$refs['input'].focus()
+        return false
+      }
       this.$store.dispatch('addBoard', {boardName: this.addBoardInput})
       this.closeModal()
     },
@@ -178,7 +189,7 @@ button:hover {
   float:right;
   line-height: 1.4;
 }
-.kanban__title{
+.kanban_title{
   margin-top: 0px;
   margin-right: 25px;
 }
@@ -214,14 +225,10 @@ button {
   outline: none;
   cursor: pointer;
   text-decoration: none;
-    }
-
-.kanban.To-do {
-  border-top: 5px solid #FFB300;
 }
 
 .kanban {
-  border-top: 5px solid #78909C;
+  border-top: 5px solid #FFB300;
   width: 20%;
   height: auto;
   margin: 1%;
@@ -408,5 +415,23 @@ button {
   -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .5);
   box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .5);
   cursor: move;
+}
+
+.addBoardModal form input {
+  width: 100%;
+  font-size: 22px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.addBoardModal form p {
+  text-align: center;
+}
+.addBoardModal form button {
+  width: 100px;
+}
+.addBoardModal form i {
+  margin-left: 30px;
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>

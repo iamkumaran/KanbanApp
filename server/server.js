@@ -12,7 +12,7 @@ import schema from './data/schema';
 
 const GRAPHQL_PORT = 4080;
 const WS_PORT = 4090;
-const MONGO_URL = 'mongodb://localhost:27017/kanbanData';
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/kanbanData';
 
 const graphQLServer = express().use('*', cors());
 

@@ -18,7 +18,7 @@ export const mutations = {
     // var i = _.find
     for (let key in state.boards) {
       if (state.boards[key]._id === data.boardId) {
-        var taskIndex = state.boards[key].task.findIndex(x => x._id === data.taskId)
+        const taskIndex = state.boards[key].task.findIndex(x => x._id === data.taskId)
         state.boards[key].task.splice(taskIndex, 1)
         break
       }
@@ -33,8 +33,21 @@ export const mutations = {
       }
     }
   },
+  reorderTasks (state, data) {
+    let taskToMove, newBoardIndex
+    for (let key in state.boards) {
+      if (state.boards[key]._id === data.currBoardId) {
+        const taskIndex = state.boards[key].task.findIndex(x => x._id === data.taskId)
+        taskToMove = state.boards[key].task.splice(taskIndex, 1)
+      }
+      if (state.boards[key]._id === data.newBoardId) {
+        newBoardIndex = key
+      }
+    }
+
+    state.boards[newBoardIndex].task.splice(data.newOrder, 0, taskToMove)
+  },
   addBoard (state, data) {
-    console.log('add board', state.boards, state.boards.length)
     // if (state.boards.length)
     state.boards.push(data.board)
   },
@@ -67,12 +80,12 @@ export const actions = {
             task {
               _id
               title
+              order
             }
           }
         }
       `
     })
-    console.log('vuex', Object.assign({}, response.data.boards))
 
     commit('setBoardList', JSON.parse(JSON.stringify(response.data.boards)))
   },
@@ -113,7 +126,7 @@ export const actions = {
         }
       }
     })
-    console.log('add vuex', response)
+    console.log('remove vuex', response)
     commit('removeTask', {boardId: payload.boardId, taskId: payload.taskId})
   },
   async updateTask ({ commit }, payload) {
@@ -143,6 +156,34 @@ export const actions = {
     }
 
     commit('updateTask', payload)
+  },
+  async reorderTasks ({ commit }, payload) {
+    const response = await graphqlClient.mutate({
+      mutation: gql`
+        mutation ($query: QueryInput!, $doc: TaskDocInput!) {
+          updateTaskOrder(query: $query, doc: $doc) {
+            title
+          }
+        }
+      `,
+      variables: {
+        query: {
+          selector: {
+            _id: payload.taskId
+          }
+        },
+        doc: {
+          boardId: payload.newBoardId,
+          order: payload.newOrder
+        }
+      }
+    })
+
+    if (response.errors) {
+      console.log('Reorder Falied')
+      return false
+    }
+    // commit('reorderTasks', payload)
   },
 
   async addBoard ({ commit }, payload) {

@@ -26,8 +26,8 @@ const resolvers = {
   },
   Board: {
     task(board) {
-      console.log('Task', board._id);
-      return Task.find({boardId: board._id});
+      // console.log('Task', board._id);
+      return Task.find({boardId: board._id}).sort({order: 1});
     },
   },
   Mutation: {

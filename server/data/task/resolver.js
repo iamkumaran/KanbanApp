@@ -27,7 +27,7 @@ const resolvers = {
   },
   Task: {
     board(task) {
-      console.log('BoardID', task.boardId);
+      // console.log('BoardID', task.boardId);
       return Board.findById(task.boardId);
     },
   },
@@ -50,6 +50,10 @@ const resolvers = {
 
     },
     updateTask(_, {query, doc}){
+      const task = Task.update(query.selector, {$set: doc});
+      return task;
+    },
+    updateTaskOrder(_, {query, doc}){
       const task = Task.update(query.selector, {$set: doc});
       return task;
     },

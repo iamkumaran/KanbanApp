@@ -1,10 +1,10 @@
 <template>
   <li :id="'task-'+task._id" class="dd-item">
-    <h3 class="title dd-handle" contenteditable="true" v-on:keydown.enter="updateTask($event, task)">{{task.title}}</h3>
+    <h3 class="title dd-handle" contenteditable="true" title="click to edit and ENTER to save" ref="editInput" v-on:keydown.enter="updateTask($event, task)" v-on:blur="updateTask($event, task)">{{task.title}}</h3>
     <div class="actions">
-      <i class="material-icons" @click="editFocus">edit</i>
-      <i class="material-icons" @click="deleteTask">delete</i>
-      <i class="material-icons">sort</i>
+      <i class="material-icons" title="Edit Task" @click="editFocus">edit</i>
+      <i class="material-icons" title="Delete Task" @click="deleteTask">delete</i>
+      <i class="material-icons" title="Drag and Drop">sort</i>
     </div>
   </li>
 </template>
@@ -20,12 +20,12 @@ export default {
   },
   methods: {
     editFocus () {
-      document.querySelector('#task-' + this.task._id + ' h3').focus()
+      this.$refs['editInput'].focus()
     },
     updateTask (e, task) {
       let newTitle = e.target.innerText.trim()
       if (!newTitle || this.task.title === newTitle) e.target.innerText = this.task.title
-      document.querySelector('#task-' + this.task._id + ' h3').blur()
+      this.$refs['editInput'].blur()
 
       this.$store.dispatch('updateTask', { boardId: this.boardId, taskId: this.task._id, newTitle: newTitle })
     },

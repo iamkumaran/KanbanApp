@@ -1,0 +1,19 @@
+version: '2'
+services:
+  client:
+    image: kanban-client:latest
+    build: client
+    ports:
+      - 8080:8080
+
+  mongo-server:
+    image: mongo:latest
+  server:
+    image: kanban-server:latest
+    build: server
+    ports:
+      - 4080:4080
+    links:
+      - mongo-server:mongo-server
+    environment:
+      MONGO_URL: mongodb://mongo-server/kanbanData

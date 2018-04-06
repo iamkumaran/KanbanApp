@@ -1,12 +1,11 @@
-# Kanban-Server
+# kanban-server
 
-This is a graphql-tools Mongoose Server to serve a simple schema.
-
+> This is a graphql-tools Mongoose Server.
 
 
 ## Installation
 
-Clone the repository and run `npm install`
+Clone the repository and run
 
 ```
 npm install
@@ -30,11 +29,9 @@ To test graphiql, you can use http://localhost:4080/graphiql.
 
 Here are some examples,
 
-1. Query
-
 Examples:
 
-get all boards without parameter
+## get all boards with tasks
 ```
   query {
     boards {
@@ -48,7 +45,7 @@ get all boards without parameter
   }
 ```
 
-get all task without parameter
+## get all tasks
 ```
   query {
     tasks{
@@ -57,38 +54,8 @@ get all task without parameter
   }
 ```
 
-get all tasks with parameter
-```
-  #query
 
-  query ($query: QueryInput){
-    tasks (query: $query){
-      title
-      board {
-        name
-      }
-    }
-  }
-
-  #variables
-  {
-    "query": {
-      "selector": {
-          "title": {"$regex": "the", "$options": "i"}
-      },
-      "options": {
-        "sort": {"title": -1},
-        "limit": 2,
-        "skip": 0
-      }  
-    }
-  }
-
-```
-you can fill selector and options using standard mongoDB criteria or refer to this page http://docs.meteor.com/api/collections.html#selectors
-
-
-create task
+## create task
 ```
   #query
 
@@ -107,7 +74,7 @@ create task
   }
 ```
 
-update task
+## update task
 ```
   #query
 
@@ -127,6 +94,27 @@ update task
     },
     "doc": {
       "title": "Buy Coffee"
+    }
+  }
+```
+
+## remove tasks
+```
+  #query
+
+  mutation ($query: QueryInput!) {
+    removeTask(query: $query) {
+      _id
+    }
+  }
+
+  #variables
+
+  {
+    "query": {
+      "selector": {
+        "_id": "585fe5883529cc2df224c1c5"
+      }
     }
   }
 ```

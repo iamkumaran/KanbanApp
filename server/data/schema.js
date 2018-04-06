@@ -27,6 +27,8 @@ const Mutation = `
     updateTask(query: QueryInput!, doc: TaskDocInput!): Task
     # Task Remove
     removeTask(query: QueryInput!): Task
+    # Task Reorder
+    updateTaskOrder(query: QueryInput!, doc: TaskDocInput!): Task
 
     # Board create
     createBoard(doc: BoardDocInput!): Board
