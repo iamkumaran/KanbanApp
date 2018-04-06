@@ -10,6 +10,24 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamkumaran/KanbanApp.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Javascript",
+    "GraphQL",
+    "Express",
+    "Apollo",
+    "Vue",
+    "Vuex"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamkumaran/KanbanApp/issues"
+  },
+  "homepage": "https://github.com/iamkumaran/KanbanApp#readme",
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",

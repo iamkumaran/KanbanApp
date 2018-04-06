@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Micro-services for Kanban board.",
   "author": "Muthu Kumaran <emailiamkumaran@gmail.com>",
-  "private": true,
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
