@@ -1,9 +1,11 @@
 # KanbanApp
 
-# Server
+Kanban Board App built using vue, vuex, graphql, mongodb, mongoose, apollographql, nodejs, expressjs...
+
+## Server
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/server
 
-# Client
+## Client
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
 
 # Docker Instructions
@@ -11,7 +13,11 @@ Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
 ## To run the docker
 ```
 docker-compose up -d
+
+# Kanban App should be running at
+http://localhost:8080/
 ```
+
 
 ## To see the running containers
 ```
