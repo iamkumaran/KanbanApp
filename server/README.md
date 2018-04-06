@@ -14,7 +14,7 @@ npm install
 
 ```
 
-## Starting the server
+## Build Setup
 
 ```
 # run on localhost:4080
@@ -28,11 +28,9 @@ mongodb://localhost:27017/kanbanData
 
 To test graphiql, use http://localhost:4080/graphiql.
 
-## Quick Start
+## GraphiQL 
 
-Here are some examples,
-
-Examples:
+Here are some examples to test in graphiql,
 
 ### get all boards with tasks
 ```
