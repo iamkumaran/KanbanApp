@@ -1,29 +1,32 @@
 # kanban-server
 
-> This is a graphql-tools Mongoose Server.
+> This is a Graphql Mongoose Server.
 
 
 ## Installation
 
-Clone the repository and run
-
 ```
+# install dependencies
 npm install
 
-start your own Mongodb server
-change connection on server.js to
 
-const MONGO_URL = "mongodb://your-mongodb-server:port/db";
+# start Mongodb server
+
 ```
 
 ## Starting the server
 
 ```
+# run on localhost:4080
 npm start
 ```
 
-The server will run on port 4080. You can change this by editing `server.js`.
-To test graphiql, you can use http://localhost:4080/graphiql.
+By Default MongoDB will run on,
+```
+mongodb://localhost:27017/kanbanData
+```
+
+To test graphiql, use http://localhost:4080/graphiql.
 
 ## Quick Start
 
@@ -31,7 +34,7 @@ Here are some examples,
 
 Examples:
 
-## get all boards with tasks
+### get all boards with tasks
 ```
   query {
     boards {
@@ -45,7 +48,7 @@ Examples:
   }
 ```
 
-## get all tasks
+### get all tasks
 ```
   query {
     tasks{
@@ -55,7 +58,7 @@ Examples:
 ```
 
 
-## create task
+### create task
 ```
   #query
 
@@ -74,7 +77,7 @@ Examples:
   }
 ```
 
-## update task
+### update task
 ```
   #query
 
@@ -98,7 +101,7 @@ Examples:
   }
 ```
 
-## remove tasks
+### remove tasks
 ```
   #query
 
