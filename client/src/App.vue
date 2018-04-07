@@ -232,8 +232,7 @@ button {
   width: 20%;
   height: auto;
   margin: 1%;
-  max-width: 250px;
-  min-width: 120px;
+  width: 250px;
   display: inline-block;
   vertical-align: top;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);

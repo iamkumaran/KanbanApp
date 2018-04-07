@@ -1,7 +1,7 @@
 <template>
   <div class="kanban">
     <i class="material-icons rm-board" title="Delete Board" @click="deleteBoard">delete</i>
-    <h2 class="kanban_title">{{board.name}}</h2>
+    <h2 class="kanban_title" title="click to edit and ENTER to save" contenteditable="true" ref="editInput" v-on:keydown.enter="updateBoard" v-on:blur="updateBoard">{{board.name}}</h2>
     <draggable element="div" :options="{draggable:'.task-items', group: 'sortables', ghostClass: 'dd-placeholder'}" @end="onEnd">
       <transition-group name="no" class="list-group" tag="ol" :data-id="board._id">
           <Task class="task-items" :data-id="task._id" :task="task" :key="task._id" :boardId="board._id" v-for="task in board.task"/>
@@ -55,6 +55,16 @@ export default {
       this.addTaskInput = ''
       this.showForm = false
     },
+    updateBoard () {
+      this.$refs['editInput'].blur()
+      let newTitle = this.$refs['editInput'].innerText.trim()
+      if (!newTitle || this.board.name === newTitle) {
+        this.$refs['editInput'].innerText = this.board.name
+        return false
+      }
+
+      this.$store.dispatch('updateBoard', { boardId: this.board._id, newTitle: newTitle })
+    },
     deleteBoard () {
       this.$store.dispatch('removeBoard', {boardId: this.board._id})
     },
@@ -83,5 +93,21 @@ export default {
     margin-left: 30px;
     display: inline-block;
     vertical-align: middle;
+  }
+  [contenteditable=true] {
+    word-break: break-all;
+  }
+  [contenteditable=true]:focus {
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+  [contenteditable=true]:hover {
+    /* border: 1px solid #4195fc;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px #4195fc; */
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  .fright {
+    float: right
   }
 </style>
