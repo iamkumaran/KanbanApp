@@ -15,6 +15,7 @@ Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
 >Developed with Angular
 
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client-angular
+
 Note: Not Dockerized
 
 # Docker Instructions
