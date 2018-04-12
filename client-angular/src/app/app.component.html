@@ -1,0 +1,6 @@
+<div id="app">
+  <h2>Kanban App</h2>
+  <p *ngIf="isLoading">Loading data...</p>
+  <app-board *ngFor="let board of dataService.boards | async" [board]=board></app-board>
+  <app-add-board></app-add-board>
+</div>

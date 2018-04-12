@@ -1,0 +1,9 @@
+<div class="kanban new">
+  <h2 class="kanban_heading">Create New Board</h2>
+  <form (submit)="addBoard($event, 'submit')">
+    <h2 class="kanban_title" title="click to edit and ENTER to save" contenteditable="true" (keydown.enter)="addBoard($event, 'enter')"></h2>
+    <div class="actions">
+      <button class="addbutt" title="Add New Board" ><i class="material-icons">control_point</i> Add Board</button>
+    </div>
+  </form>
+</div>

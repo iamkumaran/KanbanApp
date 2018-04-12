@@ -1,0 +1,16 @@
+<div class="kanban">
+  <i class="material-icons rm-board" title="Delete Board" (click)="deleteBoard()">delete</i>
+  <h2 class="kanban_title" title="click to edit and ENTER to save" contenteditable="true" ref="editInput" (keydown.enter)="updateBoard($event)" (blur)="updateBoard($event)">{{board.name}}</h2>
+
+    <ol class="list-group">
+        <app-task class="task-items" *ngFor="let task of board.task" [boardId]=board._id [task]=task></app-task>
+    </ol>
+
+  <form *ngIf="showForm" class="add-board-form">
+    <p><input type="text" value="" [(ngModel)]="addTaskInput" name="addTaskInput" placeholder="Add Task"/></p>
+    <p><button (click)="addTask($event)">Add</button> <i class="material-icons" title="Cancel" (click)="showForm = false">cancel</i></p>
+  </form>
+  <div class="actions" *ngIf="!showForm">
+    <button class="addbutt" title="Add New Task" (click)="showAddForm($event)"><i class="material-icons">control_point</i> Add Task</button>
+  </div>
+</div>

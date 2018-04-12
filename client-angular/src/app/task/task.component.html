@@ -1,0 +1,8 @@
+<li id="" class="dd-item">
+  <h3 class="title dd-handle" contenteditable="true" title="click to edit and ENTER to save" ref="editInput" (keydown.enter)="updateTask($event)" (blur)="updateTask($event)">{{task.title}}</h3>
+  <div class="actions">
+    <i class="material-icons" title="Edit Task" (click)="editFocus($event)">edit</i>
+    <i class="material-icons" title="Delete Task" (click)="deleteTask()">delete</i>
+    <i class="material-icons fright" title="Drag and Drop">sort</i>
+  </div>
+</li>
