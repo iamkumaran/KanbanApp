@@ -12,7 +12,7 @@
       <p><button @click="addTask">Add</button> <i class="material-icons" title="Cancel" @click="cancelTask">cancel</i></p>
     </form>
     <div class="actions" v-if="!showForm">
-      <button class="addbutt" title="Add New Task" @click="showAddForm"><i class="material-icons">control_point</i> Add new</button>
+      <button class="addbutt" title="Add New Task" @click="showAddForm"><i class="material-icons">control_point</i> Add Task</button>
     </div>
   </div>
 </template>
