@@ -6,13 +6,13 @@ Kanban Board App built using vue, vuex, angular, graphql, mongodb, mongoose, apo
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/server
 
 ## client
->Developed with Vue
+>Developed with Vue.
 
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
 
 
 ## client-angular
->Developed with Angular
+>Developed with Angular.
 
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client-angular
 
