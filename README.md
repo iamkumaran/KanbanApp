@@ -7,11 +7,13 @@ Readme: https://github.com/iamkumaran/KanbanApp/tree/master/server
 
 ## client
 >Developed with Vue
+
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
 
 
 ## client-angular
 >Developed with Angular
+
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client-angular
 Note: Not Dockerized
 
