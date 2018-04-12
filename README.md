@@ -1,12 +1,19 @@
 # KanbanApp
 
-Kanban Board App built using vue, vuex, graphql, mongodb, mongoose, apollographql, nodejs, expressjs...
+Kanban Board App built using vue, vuex, angular, graphql, mongodb, mongoose, apollographql, nodejs, expressjs...
 
-## Server
+## server
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/server
 
-## Client
+## client
+>Developed with Vue
 Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client
+
+
+## client-angular
+>Developed with Angular
+Readme: https://github.com/iamkumaran/KanbanApp/tree/master/client-angular
+Note: Not Dockerized
 
 # Docker Instructions
 
